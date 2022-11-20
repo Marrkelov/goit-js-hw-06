@@ -1,22 +1,23 @@
-const form = document.querySelector(".login-form");
-const button = document.querySelector('button[type="submit"]');
+const refs = {
+  form: document.querySelector(".login-form"),
+  button: document.querySelector('button[type="submit"]'),
+};
 
-button.addEventListener("click", () => {
-  form.addEventListener("submit", (event) => {
-    event.preventDefault();
+refs.button.addEventListener("click", () => {
+  refs.form.addEventListener("submit", (e) => {
+    e.preventDefault();
 
     const {
       elements: { email, password },
-    } = event.currentTarget;
+    } = e.currentTarget;
 
-    if (email.value === "" || password.value === "") {
-      alert("Заполните пожалуйста все поля");
-    } else {
-      const user = {};
-      user.email = email.value;
-      user.password = password.value;
-      console.log(user);
-    }
+    const user = {};
+
+    email.value === "" || password.value === ""
+      ? alert("Заполните пожалуйста все поля")
+      : ((user.email = email.value), (user.password = password.value));
+
+    console.log(user);
   });
 });
 
